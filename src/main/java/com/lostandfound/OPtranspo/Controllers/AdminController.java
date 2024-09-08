@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lostandfound.OPtranspo.Service.AdminService;
+import com.lostandfound.OPtranspo.Service.EmailService;
 import com.lostandfound.OPtranspo.Support.Entities;
 import com.lostandfound.OPtranspo.Support.Items;
 
@@ -28,6 +29,8 @@ import com.lostandfound.OPtranspo.Support.Items;
 public class AdminController {
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	EmailService emailService;
 
 	@GetMapping("/home")
 	public String adminHome() {
@@ -59,6 +62,10 @@ public class AdminController {
 	public ResponseEntity<String> deleteItem(@PathVariable Integer itemId){
 		return adminService.deleteItem(itemId);
 		
+	}
+	@GetMapping("/sendemail")
+	public ResponseEntity<String> sendEmail(@RequestParam String recipient){
+		return emailService.sendEmail(recipient);
 	}
 
 }

@@ -7,17 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lostandfound.OPtranspo.Service.DriverService;
+import com.lostandfound.OPtranspo.Service.EmailService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/driver")
 public class DriverController {
 	@Autowired
 	DriverService driverService;
+	@Autowired
+	EmailService emailService;
 	@GetMapping("/home")
 	public String driverHome() {
 		return "Welcome driver!";
@@ -29,6 +33,10 @@ public class DriverController {
 			@RequestParam boolean status,@RequestParam int driverId) {
 		driverService.addItem(name,date,busNumber,busRoute,status,driverId);
 		return ResponseEntity.ok("Item added susccessfully");
+	}
+	@GetMapping("/sendemail")
+	public ResponseEntity<String> sendEmail(@RequestParam String recipient){
+		return emailService.sendEmail(recipient);
 	}
 
 }

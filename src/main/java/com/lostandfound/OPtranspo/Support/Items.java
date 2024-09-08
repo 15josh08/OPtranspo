@@ -44,7 +44,7 @@ public class Items {
 		this.driverId = driverId;
 	}
 
-	public int getItemID() {
+	public Integer getItemID() {
 		return itemId;
 	}
 
@@ -68,7 +68,7 @@ public class Items {
 		this.date = date;
 	}
 
-	public int getBusNumber() {
+	public Integer getBusNumber() {
 		return busNumber;
 	}
 
@@ -92,7 +92,7 @@ public class Items {
 		this.status = status;
 	}
 
-	public int getDriverId() {
+	public Integer getDriverId() {
 		return driverId;
 	}
 

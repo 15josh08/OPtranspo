@@ -13,7 +13,7 @@ import com.lostandfound.OPtranspo.DAO.EntitiesDao;
 import com.lostandfound.OPtranspo.DAO.ItemsDao;
 import com.lostandfound.OPtranspo.Support.Entities;
 import com.lostandfound.OPtranspo.Support.Items;
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused","unchecked"})
 @Service
 public class AdminService {
 	
@@ -45,15 +45,19 @@ public class AdminService {
 			if(updatedItem.getDateColumn() != null) {
 				item.setDateColumn(updatedItem.getDateColumn());
 			}
-			
+			if(updatedItem.getBusNumber().toString() != null) {
+				item.setBusNumber(updatedItem.getBusNumber());
+			}
 			if(updatedItem.getBusRoute() != null) {
 				item.setName(updatedItem.getBusRoute());
 			}
-
 			if(updatedItem.isStatus()) {
 				item.setStatus(updatedItem.isStatus());
 			}else if(!updatedItem.isStatus()){
 				item.setStatus(false);
+			}
+			if(updatedItem.getDriverId().toString() != null) {
+				item.setDriverId(updatedItem.getDriverId());
 			}
 
 			itemsDao.save(item);
@@ -62,7 +66,7 @@ public class AdminService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public ResponseEntity<String> deleteItem(Integer itemId) {
 		Optional<Items> optionalItem = itemsDao.findById(itemId);
 		if(optionalItem.isPresent()) {
